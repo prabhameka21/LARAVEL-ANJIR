@@ -1,46 +1,80 @@
-@extends('layouts.app')
-@section('konten')
-<div class="row">
-    @if(session('success'))
-    <p class="alert alert-success">{{ session('success') }}</p>
-    @endif
-    <form action="{{ route('login.action') }}" method="POST">
+@include('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Log in (v2)</title>
+
+</head>
+@if(session('error'))
+    	<div class="text-danger text-center">{{session('error')}}</div>
+    	@endif
+      @if(session('success'))
+      <div class="text-success text-center">{{session('success')}}</div>
+      @endif
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+
+      <form action="{{ route('login.action') }}" method="POST">
         @csrf
-            <div class="col-md-6 mb-4">
-              <div class="form-outline">
-                <input type="text" id="form3Example1" class="form-control" name="name" value="{{ old('name') }}"/>
-                <label class="form-label" for="form3Example3">Name</label>
-                @error('name')
-            <label for="" class="text-danger">{{ $message }}</label>
-            @enderror
-              </div>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
             </div>
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control" name="email" value="{{ old('email') }}"/>
-            <label class="form-label" for="form3Example3">Email address</label>
-            @error('email')
+          </div>
+        </div>
+        @error('password')
             <label for="" class="text-danger">{{ $message }}</label>
             @enderror
-          </div>
-
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" id="form3Example4" class="form-control" name="password" required autocomplete="new-password" value="{{ old('password')}}" required autocomplete="email">
-            <label class="form-label" for="form3Example4">Password</label>
-            @error('password')
-            <label for="" class="text-danger">{{ $message }}</label>
-            @enderror
-          </div>
-
-          <!-- Checkbox Remember Me -->
-          <div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">Remember Me</label>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
+          </div>
+        </div>
+        @error('password')
+            <label for="" class="text-danger">{{ $message }}</label>
+            @enderror
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block mb-4">SignIn
-          </button>
-@endsection
+
+      <p class="mb-0">
+        <a href="/register" class="text-center">Register a new membership</a>
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+</body>
+</html>

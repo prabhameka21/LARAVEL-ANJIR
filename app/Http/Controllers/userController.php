@@ -55,11 +55,10 @@ class UserController extends Controller
     public function login_action(Request $request)
     {
         $request->validate([
-            'name' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt(['name' => $request->name, 'email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             $request->session()->regenerate();
             return redirect()->intended('/');
