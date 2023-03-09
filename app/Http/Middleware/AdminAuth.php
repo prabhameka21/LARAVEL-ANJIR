@@ -18,10 +18,10 @@ class AdminAuth
     {
         if(auth()->check()){
             if(!auth()->user()->role){
-                return redirect()->route('getLogin')->with('error','You have to be admin user to access this page');
+                return redirect()->route('getLogin')->with('error','');
             }
         }else{
-            return redirect()->route('getLogin')->with('error','You have to be logged in to access this page');
+            return redirect()->route('getLogin')->with('error','');
         }
         return $next($request);
     }
